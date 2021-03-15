@@ -27,6 +27,7 @@ school_data_df = pd.read_csv(school_data_to_load)
 school_data_df
 ```
 My output looked as follows:
+
 ![School_data](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/School_data.png)
 
 Then, I used the above code to open and read the students_complete.csv file, using the df.head() function to only look at the first 5 rows as this dataset was much larger:
@@ -36,6 +37,7 @@ student_data_df = pd.read_csv(student_data_to_load)
 student_data_df.head()
 ```
 My output looked as follows:
+
 ![student_data](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Student_data.png)
 
 ### *Cleaning the Data*
@@ -70,6 +72,7 @@ I modified the above code to determine the date types in the students_data DataF
 student_data_df.dtypes
 ```
 The output looked as follows:
+
 ![Student_dtype](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Student_dtype.png)
 
 This output confirmed that all columns needed for calculations were integers. 
@@ -329,6 +332,7 @@ district_summary_df["% Passing Reading"] = district_summary_df["% Passing Readin
 district_summary_df["% Overall Passing"] = district_summary_df["% Overall Passing"].map("{:.0f}".format)
 ```
 Running the code district_summary_df, the output looked as follows:
+
 ![District_Summary](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/District_Summary.png)
 
 ## School Summaries
@@ -1065,24 +1069,33 @@ type_summary_df
 ## Results
 1. How is the district summary affected?
 Original Dataset:
+
 ![District_Summary_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/District_Summary_1.png)
+
 Refactored Dataset:
+
 ![ District_Summary_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/District_Summary_2.png)
 
 Replacing the ninth-grade scores for Thomas High School with NaNs decreased the average math score by 0.1%-points, while the reading score remained the same. The percent of students passing math decreased from 75.0% to 74.8%, the percentage of students who passing reading decreased slightly from 85.8% to 85.7%, and the percentage of students who passed both decreased from 65.2% to 64.9%. 
 
 2. How is the school summary affected?
 Original Dataset:
+
 ![School_Summary_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/School_Summary_1.png)
+
 Refactored Dataset:
+
 ![ School_Summary_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/School_Summary_2.png)
 
 As expected, the math and reading scores for Thomas High School changed for the school summary, while math and reading scores for other high schools remained the same. For Thomas High School, the average math score declined from 83.41 to 83.35, the average reading score slightly increased from 83.84 to 83.89, the percentage of students passing math slightly declined from 93.27% to 93.19%, the percentage of students passing reading declined from 97.30% to 97.02%, and the percentage of students passing both declined from 90.94% to 90.63%. 
 
 3. How does replacing the ninth graders’ math and reading scores affect Thomas High School’s performance relative to the other schools?
 Original Dataset:
+
 ![Top5_Schools_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Top5_Schools_1.png)
+
 Refactored Dataset:
+
 ![ Top5_Schools_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Top5_Schools_2.png)
 
 Replacing the ninth graders’ math and reading scores did not affect Thomas High School’s performance relative to the other schools. Thomas High School remained the second-highest performing school.
@@ -1090,9 +1103,12 @@ Replacing the ninth graders’ math and reading scores did not affect Thomas Hig
 4. How does replacing the ninth-grade scores affect the following:
   - Math and reading scores by grade
 Original Dataset:
+
 ![Math_by_Grade_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Math_by_Grade_1.png)
 ![Reading_by_Grade_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Reading_by_Grade_1.png)
+
 Refactored Dataset:
+
 ![Math_by_Grade_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Math_by_Grade_2.png)
 ![Reading_by_Grade_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Reading_by_Grade_2.png)
 
@@ -1100,24 +1116,33 @@ Replacing the ninth-grade scores did not affect the math and reading scores by g
 
   - Scores by school spending
 Original Dataset:
+
 ![Spending_Bins_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Spending_Bins_1.png)
+
 Refactored Dataset:
+
 ![Spending_Bins_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Spending_Bins_2.png)
 
 Replacing the ninth-grade scores did not affect the math and reading scores by school spending. 
 
   - Scores by school size
 Original Dataset:
+
 ![Size_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Size_1.png)
+
 Refactored Dataset:
+
 ![Size_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Size_2.png)
 
 Replacing the ninth-grade scores did not affect the math and reading scores by school size. 
 
   - Scores by school type
 Original Dataset:
+
 ![Type_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Type_1.png)
+
 Refactored Dataset:
+
 ![Type_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Type_2.png)
 
 Replacing the ninth-grade scores did not affect the math and reading scores by school type. 
