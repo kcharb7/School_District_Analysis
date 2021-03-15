@@ -64,6 +64,7 @@ To determine the data types in the school_data DataFrame, I used the dtypes attr
 school_data_df.dtypes
 ```
 The output looked as follows:
+
 ![School_dtype](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/School_dtype.png)
 
 I modified the above code to determine the date types in the students_data DataFrame:
@@ -576,6 +577,7 @@ spending_bins = [0, 585, 615, 645, 675]
 per_school_capita.groupby(pd.cut(per_school_capita, spending_bins)).count()
 ```
 The output looked as follows:
+
 ![Spending_Bins_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Spending_Bins_1.png)
 
 This output indicated that the schools were not grouped equally across the bins and thus the bins needed to be adjusted. The second range was increased to $585-$615 and the third range was decreased to $630-$645, with the above code being changed to the following:
@@ -585,6 +587,7 @@ spending_bins = [0, 585, 630, 645, 675]
 per_school_capita.groupby(pd.cut(per_school_capita, spending_bins)).count()
 ```
 The changes created a more equal distribution of schools within each range as shown in the following output:
+
 ![Spending_Bins_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Spending_Bins_2.png)
 
 Once the ranges were set, each range was labeled using a list of string values:
@@ -1102,6 +1105,7 @@ Replacing the ninth graders’ math and reading scores did not affect Thomas Hig
 
 4. How does replacing the ninth-grade scores affect the following:
   - Math and reading scores by grade
+
 Original Dataset:
 
 ![Math_by_Grade_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Math_by_Grade_1.png)
@@ -1115,6 +1119,7 @@ Refactored Dataset:
 Replacing the ninth-grade scores did not affect the math and reading scores by grade. 
 
   - Scores by school spending
+
 Original Dataset:
 
 ![Spending_Bins_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Spending_Bins_1.png)
@@ -1126,6 +1131,7 @@ Refactored Dataset:
 Replacing the ninth-grade scores did not affect the math and reading scores by school spending. 
 
   - Scores by school size
+
 Original Dataset:
 
 ![Size_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Size_1.png)
@@ -1137,6 +1143,7 @@ Refactored Dataset:
 Replacing the ninth-grade scores did not affect the math and reading scores by school size. 
 
   - Scores by school type
+
 Original Dataset:
 
 ![Type_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Type_1.png)
