@@ -55,6 +55,7 @@ Using this same method in addition to the sum() method, I executed code to deter
 student_data_df.isnull().sum()
 ``` 
 The output indicated there was no missing data. 
+
 ![Student_isnull](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Student_isnull.png)
 
 ### *Determine Data Types*
@@ -1108,12 +1109,21 @@ Replacing the ninth graders’ math and reading scores did not affect Thomas Hig
 
 Original Dataset:
 
+*Math*
+
 ![Math_by_Grade_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Math_by_Grade_1.png)
+
+*Reading*
 ![Reading_by_Grade_1](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Reading_by_Grade_1.png)
 
 Refactored Dataset:
 
+*Math*
+
 ![Math_by_Grade_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Math_by_Grade_2.png)
+
+*Reading*
+
 ![Reading_by_Grade_2](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Reading_by_Grade_2.png)
 
 Replacing the ninth-grade scores did not affect the math and reading scores by grade. 
