@@ -198,6 +198,7 @@ To perform these analyses, I merged the school_data_df and student_data_df on th
 school_data_complete_df = pd.merge(student_data_df, school_data_df, on = ["school_name", "school_name"])
 school_data_complete_df.head()
 ```
+
 ### *Number of Students*
 To get the total number of students in the school district, I added the count() method to the school_data_complete_df DataFrame and selected the column that identifies with students, “Student ID”:
 ```
@@ -206,6 +207,7 @@ student_count = school_data_complete_df["Student ID"].count()
 student_count
 ```
 The number of students in the district was 39,170.
+
 ### *Number of Schools*
 To determine the number of schools within the school_data_complete_df DataFrame I used the unique method to gather the unique items in the “school_name” column and then determined the length of the list produced:
 ```
@@ -214,6 +216,7 @@ school_count_2 = school_data_complete_df["school_name"].unique()
 school_count = len(school_count_2)
 ```
 There were 15 different schools.
+
 ### *Total Budget*
 To determine the total budget for the whole district, I used the sum() method on the “budget” column within the school_data_df DataFrame:
 ```
@@ -222,6 +225,7 @@ total_budget = school_data_df["budget"].sum()
 total_budget
 ```
 The total budget for the whole district was $24,649,428. 
+
 ### *Average Math and Reading Scores*
 Using the mean() method and the school_data_complete_df DataFrame, I calculated the average reading scores:
 ```
@@ -237,6 +241,7 @@ average_math_score = school_data_complete_df["math_score"].mean()
 average_math_score
 ```
 The average math score was 78.98537145774827. 
+
 ### *Passing Percentages*
 In this school district, the passing score for both the reading and math assessment tests was 70. In a new cell, I assigned two variables, passing_math and passing_reading, to the math_score and reading_score columns within the school_data_complete_df DataFrame where all scores were greater or equal to 70:
 ```
@@ -286,6 +291,10 @@ passing_math_reading.head()
 ```
 Then, I applied the count() method to the passing_math_reading DataFrame to get the total number of students who passed both math and reading:
 ```
+# Calculate the number of students who passed both math and reading.
+overall_passing_math_reading_count = passing_math_reading["student_name"].count()
+overall_passing_math_reading_count
+```
 The total number of students who passed both math and reading was 25,528.
 Dividing the overall_passing_math_reading_count by the toal number of students and multiplying by 100, I calculated the percentage of students who passed both math and reading:
 ```
@@ -294,6 +303,7 @@ overall_passing_percentage = overall_passing_math_reading_count / student_count 
 overall_passing_percentage
 ```
 65.17% of students passed both reading and math.
+
 ### *Create a District Summary DataFrame*
 After all the calculations for the district summary were complete, I created a new DataFrame named district_summary_df by creating a list of dictionaries that included all the calculations:
 ```
@@ -309,6 +319,7 @@ district_summary_df = pd.DataFrame(
         "% Overall Passing": overall_passing_percentage}])
 district_summary_df
 ```
+
 ### *Format Colums*
 To clean up the DataFrame, I set to format the budget to two decimal places, the grade averages to one decimal place, and the grade percentages to the nearest whole number percent, as well as add a thousand separator for numbers greater than 1,000.
 Starting with the “Total Students” column, I used the map() and format() functions to format the Total Students column with a thousands separator:
@@ -319,6 +330,12 @@ district_summary_df["Total Students"] = district_summary_df["Total Students"].ma
 district_summary_df["Total Students"]
 ```
 Using the same method, I formatted the “Total Budget” column with a US dollar sign, a thousands separator, and to two decimal places:
+```
+# Format "Total Budget" to have the comma for a thousands separator, a decimal separator, and a "$".
+
+district_summary_df["Total Budget"] = district_summary_df["Total Budget"].map("${:,.2f}".format)
+
+district_summary_df["Total Budget"]
 ```
 Continuing with this method, I formatted the “Average Reading Score” and “Average Math Score” columns to one decimal place, and the “% Passing Reading”, “% Passing Math”, and “% Overall Passing” columns to the nearest whole number percentage:
 ```
@@ -372,6 +389,7 @@ To get the student count from the school_data_complete_df DataFrame, I used the 
 per_school_counts = school_data_complete_df["school_name"].value_counts()
 per_school_counts
 ```
+
 ### *Budget per Student*
 To get the budget per student I used the set_index() method on the “school_name” column of the school_data_df DataFrame:
 ```
@@ -385,6 +403,7 @@ To get the budget per student, I divided the per_school_budget by the per_school
 per_school_capita = per_school_budget / per_school_counts
 per_school_capita
 ```
+
 ### *Score Averages Per School*
 Next, I determined the average math and reading scores for each school by applying the mean() method to the groupby() function within the school_data_complete_df DataFrame:
 ```
@@ -395,6 +414,7 @@ per_school_math
 per_school_reading = school_data_complete_df.groupby(["school_name"]).mean()["reading_score"]
 per_school_reading
 ```
+
 ### *Passing Percentages Per School*
 To calculate the number of students who passed math or reading for each school, I modified the code that was used to calculate the number of students who passed math and reading for the district summary by adding the groupby() function and the count() method:
 ```
@@ -419,7 +439,7 @@ To calculate the overall passing percentage for both math and reading I first ca
 per_passing_math_reading = school_data_complete_df[(school_data_complete_df["math_score"] >= 70) & (school_data_complete_df["reading_score"] >= 70)]
 per_passing_math_reading.head()
 ```
-The, I set the index as the school_name using the grouby() function and used the count() method for the student_name to get the total number of students who passed both reading and math per school:
+Then, I set the index as the school_name using the grouby() function and used the count() method for the student_name to get the total number of students who passed both reading and math per school:
 ```
 # Calculate the number of students who passed both math and reading.
 per_passing_math_reading = per_passing_math_reading.groupby(["school_name"]).count()["student_name"]
@@ -429,6 +449,7 @@ The per_passing_math_reading value was divided by the per_school_counts and then
 # Calculate the overall passing percentage.
 per_overall_passing_percentage = per_passing_math_reading / per_school_counts * 100
 ```
+
 ### *Create the School Summary DataFrame*
 I created a new DataFrame named per_school_summary_df by creating a list of dictionaries using the column names as the keys and the data obtained above as the values:
 ```
@@ -445,6 +466,7 @@ per_school_summary_df = pd.DataFrame({
            "% Overall Passing": per_overall_passing_percentage})
 per_school_summary_df.head()
 ``` 
+
 ### *Format the DataFrame*
 Following creation of the new DataFrame, I formatted the “Total School Budget” and “Per Student Budget” columns to include a US dollar sign, two decimal places, and a thousands separator using the map() function and applying formatting within the parentheses:
 ```
@@ -467,6 +489,7 @@ top_schools.head()
 ![Top_Schools](https://github.com/kcharb7/School_District_Analysis/blob/main/Resources/Top_Schools.png)
 
 The top five highest-performing schools included Cabrera High School, Thomas High School, Griffin High School, Wilson High School, and Pena High School, all of which were charter schools and had student counts below 2,300. 
+
 ### *Lowest-Performing Schools*
 To determine the five lowest-performing schools based on the overall percentage passing, I used the same code as was used to determine the highest-performing schools but sorted them in ascending order:
 ```
@@ -489,6 +512,7 @@ tenth_graders = school_data_complete_df[(school_data_complete_df["grade"]=="10th
 eleventh_graders = school_data_complete_df[(school_data_complete_df["grade"]=="11th")]
 twelfth_graders = school_data_complete_df[(school_data_complete_df["grade"]=="12th")]
 ```
+
 ### *Score Averages Grouped by School Name*
 To get the average math score by grade level for each school, I used the grouby() function on the “school_name” column for each grade level DataFrame and applied the mean() on the “math_score” column:
 ```
@@ -506,6 +530,7 @@ tenth_grade_reading_scores = tenth_graders.groupby(["school_name"]).mean()["read
 eleventh_grade_reading_scores = eleventh_graders.groupby(["school_name"]).mean()["reading_score"]
 twelfth_grade_reading_scores = twelfth_graders.groupby(["school_name"]).mean()["reading_score"]
 ```
+
 ### *Combine the Series into a DataFrame*
 I created a new DataFrame named math_scores_by_grade and added the math scores for each grade to it using the following code:
 ```
@@ -527,6 +552,7 @@ reading_scores_by_grade = pd.DataFrame({
               "12th": twelfth_grade_reading_scores})
 reading_scores_by_grade.head()
 ```
+
 ### *Format the Averages and Remove the Index Name*
 I formatted the grade-level math average to one decimal place using the map(“{:.1f}”.format). I additionally removed the name of the index column school_name by setting the index name to “None”:
 ```
@@ -597,6 +623,7 @@ Once the ranges were set, each range was labeled using a list of string values:
 spending_bins = [0, 585, 630, 645, 675]
 group_names = ["<$584", "$585-629", "$630-644", "$645-675"]
 ```
+
 ### *Categorize the Spending Bins*
 With the spending bins and ranges created, I created a new column in the per_school_summary_df DataFrame by using the cut() function on the per_school_capita Series to get the four spending bins and adding them to the per_school_summary_df DataFrame:
 ```
@@ -604,6 +631,7 @@ With the spending bins and ranges created, I created a new column in the per_sch
 per_school_summary_df["Spending Ranges (Per Student)"] = pd.cut(per_school_capita, spending_bins, labels=group_names)
 per_school_summary_df
 ```
+
 ### *Group by the Spending Ranges*
 Using the groupby() function on the “Spending Ranges (Per Student)” column and the mean() method, I created five new Series for the average math and reading scores, the percentage of students who passed math and reading, and the overall percentage of students who passed for each spending bin:
 ```
@@ -618,6 +646,7 @@ spending_passing_reading = per_school_summary_df.groupby(["Spending Ranges (Per 
 
 overall_passing_spending = per_school_summary_df.groupby(["Spending Ranges (Per Student)"]).mean()["% Overall Passing"]
 ```
+
 ### *Create a DataFrame for the Scores by School Spending*
 Using these new Series, I created a new DataFrame:
 ```
@@ -666,6 +695,7 @@ per_school_summary_df["School Size"] = pd.cut(per_school_summary_df["Total Stude
 
 per_school_summary_df.head()
 ```
+
 ### *Group by School Size*
 Using the groupby() function on the “School Size” column and the mean() method, I created five new Series for the average math and reading scores, the percentage of students who passed math and reading, and the overall percentage of students who passed for each school-size bin:
 ```
@@ -680,6 +710,7 @@ size_passing_reading = per_school_summary_df.groupby(["School Size"]).mean()["% 
 
 size_overall_passing = per_school_summary_df.groupby(["School Size"]).mean()["% Overall Passing"]
 ```
+
 ### *Create a DataFrame for the Scores by School Size*
 After the fives Series were created, I added them to a new DataFrame:
 ```
