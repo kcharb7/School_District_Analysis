@@ -12,6 +12,10 @@ Maria, a Chief Scientist for a city school district, has asked for my helped in 
   - School performance based on the school size 
   - School performance based on the type of school
 
+## Resources
+-	Data Source: Pstudents_complete.csv, schools_complete.csv, missing_grades.csv, clean_students_complete.csv
+-	Software: Python 3.6.1, Jupyter Notebook 6.2.0
+
 ## Preparing the Data
 ### *Add the Pandas Dependency*
 To begin my analysis, I imported the Pandas Dependency with the following code:
