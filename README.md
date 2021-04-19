@@ -1,7 +1,7 @@
 # PyCity Schools with Pandas
 ## Overview
 ### *Purpose* 
-Maria, a Chief Scientist for a city school district, has asked for my helped in analyzing data on student funding and students’ standardized test scores on math and reading. Analysis of trends are to be presented to the school board so they can make decisions regarding school budgets and priorities. The list of deliverables included:
+Maria, a Chief Scientist for a city school district, has asked for my help in analyzing data on student funding and students’ standardized test scores on math and reading. Analysis of trends are to be presented to the school board so they can make decisions regarding school budgets and priorities. The list of deliverables included:
 -	A high-level snapshot of the district's key metrics, presented in a table format
 -	An overview of the key metrics for each school, presented in a table format
 -	Tables presenting each of the following metrics:
